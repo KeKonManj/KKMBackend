@@ -6,6 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install ca-certificates gpg wget -y
 RUN apt-get install build-essential libtool autoconf unzip -y
 RUN apt-get install libssl-dev -y
+# RUN apt-get install g++-13 -y
 
 # this shoud go in another image or in a step
 # version=4.0
@@ -21,8 +22,10 @@ RUN make install
 WORKDIR /workspace
 RUN rm -r temp
 
+
 FROM base
 
+# ENV CXX=g++-13
 COPY src /workspace/src
 WORKDIR src
 RUN cmake build .

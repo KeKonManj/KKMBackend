@@ -1,4 +1,4 @@
-FROM debian:bullseye AS base
+FROM debian:bookworm AS base
 
 WORKDIR /workspace
 #Update & upgrade
@@ -27,9 +27,9 @@ FROM base
 
 # ENV CXX=g++-13
 COPY src /workspace/src
-WORKDIR src
-RUN cmake build .
-RUN make
+WORKDIR /workspace/src
+RUN cmake -B build -S .
+RUN cmake --build build
 
 ENTRYPOINT ["./KKMBackend"]
 

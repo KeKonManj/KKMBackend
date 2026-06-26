@@ -1,19 +1,41 @@
 #pragma once
 
+#include <Quantity.hpp>
+#include <chrono>
 #include <string>
-#include <vector>
 
 class Ingredient
 {
-public:
+   public:
     Ingredient() = default;
-    explicit Ingredient(const std::string name) : m_name(std::move(name)){} // std::move to steal resource
+    explicit Ingredient(std::string name)
+        : m_name(std::move(name)){};  // std::move to steal resource
 
-    void addIngredient(const std::string& name, int quantity); // should take an unit, maybe a struct, maybe also an ingredient is a class with a given unit associated
+   private:
+    std::string m_name{"New Ingredient"};
+};
 
-    [[nodiscard]] const std::string& getName() const noexcept;
+class RecipeIngredient : public Ingredient
+{
+   public:
+    RecipeIngredient() = default;
+    explicit RecipeIngredient(std::string name, Quantity quantity)
+        : Ingredient(std::move(name)), m_quantity(std::move(quantity)){};
 
-private:
-    std::string m_name{"New Recipe"};
-    std::vector<std::string> m_ingredients{{}}; // should be a vector if ingredient ? or of struc ingredient + quantity ?
+   private:
+    Quantity m_quantity{};
+};
+
+class StockIngredient : public Ingredient
+{
+   public:
+    StockIngredient() = default;
+    explicit StockIngredient(std::string name, Quantity quantity,
+                             const std::chrono::year_month_day expireDate)
+        : Ingredient(std::move(name)), m_quantity(std::move(quantity)), m_expireDate(expireDate){};
+
+   private:
+    Quantity m_quantity{};
+    std::chrono::year_month_day m_expireDate{std::chrono::year_month_day{
+        std::chrono::floor<std::chrono::days>(std::chrono::system_clock::now())}};
 };

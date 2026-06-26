@@ -1,8 +1,9 @@
+#include <Ingredient.hpp>
+#include <Recipe.hpp>
 #include <iostream>
 
-#include <Recipe.hpp>
-
-int main(int, char**){
+int main(int, char **)
+{
     std::cout << "Hello, from KKMBackend!\n";
     Recipe new_recipe_1;
     Recipe new_recipe_2("ma nouvelle recette de merde");

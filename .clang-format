@@ -1,0 +1,33 @@
+BasedOnStyle: Google
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+ColumnLimit: 80
+
+BreakBeforeBraces: Allman
+
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: False
+
+MaxEmptyLinesToKeep: 1
+SeparateDefinitionBlocks: Always
+KeepEmptyLinesAtTheStartOfBlocks: False
+
+IncludeBlocks: Regroup
+SortIncludes: true
+
+
+PointerAlignment: Right
+
+DerivePointerAlignment: false
+
+SpacesBeforeTrailingComments: 2
+
+SpaceAfterCStyleCast: true
+
+SpacesInParentheses: false
+
+FixNamespaceComments: true
